@@ -1,0 +1,25 @@
+defmodule Streamers do
+  @doc """
+  Find streaming index file in the given directory.
+
+  ## Examples
+
+      iex> Streamers.find_index("this/doesnt/exist")
+      nil
+
+  """
+
+  def find_index(directory) do
+    file = Path.join(directory, "*.m3u8")
+    Enum.find Path.wildcard(files), fn(file) ->
+      is_index?(file)
+    end
+  end
+
+  def is_index?(file) do
+    File.open(file), fn
+      "#EXTM3U\n#EXT-X-STREAM-INF" <> _ -> true
+      _ -> false
+    end
+  end
+end
