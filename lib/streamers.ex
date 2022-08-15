@@ -15,7 +15,7 @@ defmodule Streamers do
   end
 
   def is_index?(file) do
-    File.open(file), fn
+    File.open file, fn
       "#EXTM3U\n#EXT-X-STREAM-INF" <> _ -> true
       _ -> false
     end
