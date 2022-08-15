@@ -10,7 +10,7 @@ defmodule StreamersTest do
   end
 
   test "returns nil for not available index file" do
-    assert Strea..find_index("test/fixtures/not_available") ==
+    assert Streamers.find_index("test/fixtures/not_available") ==
       nil
   end
 end
